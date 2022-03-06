@@ -1,0 +1,24 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Linting
+      run: make linting
+
+    - name: Run mypy
+      run: make mypy
+
+    - name: Run unit tests
+      run: make unit-tests

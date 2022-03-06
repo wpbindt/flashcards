@@ -1,0 +1,10 @@
+-r base.txt
+
+flake8==4.0.1
+freezegun==1.2.0
+mypy==0.931
+pytest==6.2.5
+
+# stubs for mypy
+types-psycopg2==2.9.6
+types-requests==2.27.7

@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  flashcards:
+    environment:
+      - PYTHONPATH=/
+    entrypoint: python3 /flashcards/flashcard_cli.py
+
+  database:
+    volumes:
+      - flashcards_data:/var/lib/postgresql/data
+
+
+volumes:
+  flashcards_data:

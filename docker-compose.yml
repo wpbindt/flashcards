@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  flashcards:
+    build:
+      dockerfile: docker/flashcards/Dockerfile
+      context: .
+    depends_on:
+      - database
+    environment:
+      - DATABASE_HOST=database
+      - DATABASE_PORT=5432
+      - DATABASE_URI=postgresql://test:test@database:5432/fixture
+      - PYTHONDONTWRITEBYTECODE=1
+    volumes:
+      - ./flashcards:/flashcards
+      - ./tests:/tests
+
+  database:
+    build:
+      context: docker/database
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=fixture
