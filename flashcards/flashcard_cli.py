@@ -20,9 +20,9 @@ def review() -> None:
         if reviewable_dto is None:
             print('No more cards to review!')
             exit(0)
-        print(f'Front: {reviewable_dto.question} <<press enter to see answer>>')
+        print(f'Front: {reviewable_dto.question} <<press enter to see answer>>', end='')
         input()
-        print(f'Back: {reviewable_dto.answer} (correct? [y/N])')
+        print(f'Back: {reviewable_dto.answer} (correct? [y/N])', end='')
         response = input()
         correct = response.lower() in {'yes', 'y'}
         mark_correct(deck_name=args.name, reviewable_id=reviewable_dto.id, correct=correct, uow=get_pg_uow())
@@ -34,6 +34,7 @@ def create_deck() -> None:
     args = parser.parse_args(sys.argv[2:])
     if args.name:
         create_deck_service(name=args.name, uow=get_pg_uow())
+        print(f'Deck {args.name} created')
 
 
 def add_card() -> None:
@@ -50,6 +51,7 @@ def add_card() -> None:
         both_sides=args.both_sides,
         uow=get_pg_uow(),
     )
+    print('Flashcard added')
 
 
 if __name__ == '__main__':
