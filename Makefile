@@ -26,7 +26,7 @@ down:
 	docker-compose down --remove-orphans
 
 .PHONY: test
-test: linting mypy unit-tests integration-tests e2e-tests
+test: linting mypy unit-tests
 
 .PHONY: unit-tests
 unit-tests:
