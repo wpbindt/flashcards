@@ -34,8 +34,8 @@ unit-tests:
 
 .PHONY: mypy
 mypy:
-	${DOCKER_COMPOSE_TEST_RUN} --no-deps flashcards mypy /tests /flashcards
+	${DOCKER_COMPOSE_TEST_RUN} --no-deps flashcards mypy --install-types --non-interactive /tests /flashcards
 
 .PHONY: linting
 linting:
-	${DOCKER_COMPOSE_TEST_RUN} --no-deps flashcards flake8 /tests /flashcards
+	${DOCKER_COMPOSE_TEST_RUN} --no-deps flashcards flake8 --max-line-length 120 /tests /flashcards

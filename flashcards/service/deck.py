@@ -1,9 +1,10 @@
+from __future__ import annotations
 import datetime
 from dataclasses import dataclass
 from typing import Optional
 from uuid import UUID, uuid4
 
-from flashcards.domain.flashcard import Deck, DeckId, FlashcardId, ReviewableId
+from flashcards.domain.flashcard import Deck, DeckId, FlashcardId, ReviewableId, Reviewable
 from flashcards.uow import UnitOfWork
 
 
@@ -34,6 +35,14 @@ class ReviewableDTO:
     question: str
     answer: str
 
+    @classmethod
+    def from_domain_object(cls, domain_object: Reviewable) -> ReviewableDTO:
+        return cls(
+            id=domain_object.id,
+            question=domain_object.question,
+            answer=domain_object.answer,
+        )
+
 
 def get_next_reviewable(deck_name: str, uow: UnitOfWork) -> Optional[ReviewableDTO]:
     with uow:
@@ -41,7 +50,7 @@ def get_next_reviewable(deck_name: str, uow: UnitOfWork) -> Optional[ReviewableD
         if deck is None:
             raise ValueError
         all_reviewables = deck.cards_to_review(datetime=datetime.datetime.now())
-    return next(iter(all_reviewables), None)
+    return next(map(ReviewableDTO.from_domain_object, all_reviewables), None)
 
 
 def mark_correct(deck_name: str, reviewable_id: UUID, correct: bool, uow: UnitOfWork) -> None:

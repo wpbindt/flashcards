@@ -1,9 +1,10 @@
 import argparse
 import sys
 
-from container import get_pg_uow
+from flashcards.container import get_pg_uow
 from flashcards.service.flashcard import add_flashcard
-from service.deck import create_deck as create_deck_service, add_flashcard_to_deck, get_next_reviewable, mark_correct
+from flashcards.service.deck import create_deck as create_deck_service, \
+    add_flashcard_to_deck, get_next_reviewable, mark_correct
 
 
 def print_help() -> None:

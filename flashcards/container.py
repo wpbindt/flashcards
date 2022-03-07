@@ -1,6 +1,5 @@
 import os
 
-from flashcards.adapters.key_value_store.postgres import PGKeyValueStore
 from flashcards.adapters.repository.repositories import pg_repositories_factory, \
     fake_repositories_factory
 from flashcards.adapters.transaction.fake_transaction import FakeTransaction

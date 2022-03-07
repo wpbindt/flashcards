@@ -66,7 +66,7 @@ class Reviewable(Entity[ReviewableId]):
     def reset(self) -> None:
         self.mark_incorrect()
 
-    def _reschedule(self):
+    def _reschedule(self) -> None:
         self.review_at = (
             datetime.now()
             .replace(hour=0, minute=0, second=0, microsecond=0)
@@ -87,7 +87,7 @@ class Deck(Entity[DeckId]):
         self._deck_id = deck_id
         self.name = name
         if cards is None:
-            cards: Dict[FlashcardId, Set[Reviewable]] = defaultdict(set)
+            cards = defaultdict(set)
         self.cards = cards
 
     def cards_to_review(self, datetime: datetime) -> List[Reviewable]:
