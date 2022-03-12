@@ -56,7 +56,7 @@ def add_card() -> None:
     print('Flashcard added')
 
 
-def _delete_last_line():
+def _delete_last_line() -> None:
     sys.stdout.write('\x1b[1A')
     sys.stdout.write('\x1b[2K')
 
