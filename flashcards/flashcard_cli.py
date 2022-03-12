@@ -22,10 +22,12 @@ def review() -> None:
             exit(0)
         print(f'Front: {reviewable_dto.question} <<press enter to see answer>>', end='')
         input()
-        print(f'Back: {reviewable_dto.answer} (correct? [y/N])', end='')
+        print(f'Back: {reviewable_dto.answer} (correct? [y/N]) ', end='')
         response = input()
         correct = response.lower() in {'yes', 'y'}
         mark_correct(deck_name=args.name, reviewable_id=reviewable_dto.id, correct=correct, uow=get_pg_uow())
+        _delete_last_line()
+        _delete_last_line()
 
 
 def create_deck() -> None:
@@ -52,6 +54,11 @@ def add_card() -> None:
         uow=get_pg_uow(),
     )
     print('Flashcard added')
+
+
+def _delete_last_line():
+    sys.stdout.write('\x1b[1A')
+    sys.stdout.write('\x1b[2K')
 
 
 if __name__ == '__main__':
