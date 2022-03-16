@@ -6,7 +6,7 @@ from flashcards.adapters.dto.deck import DeckDTO
 from flashcards.adapters.dto.mappers import deck_from_dto
 from flashcards.adapters.key_value_store.key_value_store import KeyValueStore
 from flashcards.adapters.key_value_store.query import FieldEqual
-from flashcards.domain.flashcard import Deck, DeckId
+from flashcards.domain.deck import DeckId, Deck
 
 
 class DeckRepository(ABC):

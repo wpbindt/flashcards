@@ -6,7 +6,7 @@ from typing import List
 
 from freezegun import freeze_time
 
-from flashcards.domain.flashcard import Reviewable, ReviewableId
+from flashcards.domain.reviewable import Reviewable, ReviewableId
 
 
 class TestReviewable(unittest.TestCase):

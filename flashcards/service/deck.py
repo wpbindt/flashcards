@@ -4,7 +4,9 @@ from dataclasses import dataclass
 from typing import Optional
 from uuid import UUID, uuid4
 
-from flashcards.domain.flashcard import Deck, DeckId, FlashcardId, ReviewableId, Reviewable
+from flashcards.domain.flashcard import FlashcardId
+from flashcards.domain.deck import DeckId, Deck
+from flashcards.domain.reviewable import Reviewable, ReviewableId
 from flashcards.uow import UnitOfWork
 
 

@@ -3,7 +3,9 @@ from collections import defaultdict
 from flashcards.adapters.dto.flashcard import FlashcardDTO
 from flashcards.adapters.dto.deck import DeckDTO
 from flashcards.adapters.dto.reviewable import ReviewableDTO
-from flashcards.domain.flashcard import Flashcard, FlashcardId, Deck, DeckId, Reviewable, ReviewableId
+from flashcards.domain.flashcard import Flashcard, FlashcardId
+from flashcards.domain.deck import DeckId, Deck
+from flashcards.domain.reviewable import Reviewable, ReviewableId
 
 
 def reviewable_from_dto(dto: ReviewableDTO) -> Reviewable:

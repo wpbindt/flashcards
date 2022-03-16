@@ -4,7 +4,8 @@ from uuid import uuid4
 
 from freezegun import freeze_time
 
-from flashcards.domain.flashcard import Flashcard, FlashcardId, Deck, DeckId
+from flashcards.domain.flashcard import Flashcard, FlashcardId
+from flashcards.domain.deck import DeckId, Deck
 
 
 class TestDeck(unittest.TestCase):

@@ -5,7 +5,7 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
-from flashcards.domain.flashcard import Reviewable
+from flashcards.domain.reviewable import Reviewable
 
 
 class ReviewableDTO(BaseModel):
