@@ -12,6 +12,7 @@ class TestDeck(unittest.TestCase):
     def _get_all_reviewables(deck_name: str) -> Set[ReviewableDTO]:
         output: Set[ReviewableDTO] = set()
         while (reviewable := get_next_reviewable(deck_name=deck_name, uow=get_fake_uow())) not in output:
+            assert reviewable is not None
             output.add(reviewable)
         return output
 

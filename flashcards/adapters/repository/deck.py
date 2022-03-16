@@ -55,4 +55,4 @@ class KeyValueDeckRepository(DeckRepository):
 
     def find_by_flashcard(self, flashcard_id: FlashcardId) -> AbstractSet[Deck]:
         matches = self._store.find(FieldContains(field='cards', value=flashcard_id))
-        return set(matches)
+        return set(map(deck_from_dto, matches))

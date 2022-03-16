@@ -72,6 +72,6 @@ def remove_flashcard_from_decks(flashcard_id: UUID, uow: UnitOfWork) -> None:
     with uow:
         decks = uow.repositories.deck.find_by_flashcard(FlashcardId(flashcard_id))
         for deck in decks:
-            deck.remove_flashcard(flashcard_id)
+            deck.remove_flashcard(FlashcardId(flashcard_id))
             uow.repositories.deck.add(deck)
         uow.commit()
