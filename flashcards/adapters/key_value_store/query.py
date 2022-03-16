@@ -15,3 +15,9 @@ class FieldEqual(Query):
 @dataclass(frozen=True)
 class AndQuery(Query):
     queries: Sequence[Query]
+
+
+@dataclass(frozen=True)
+class FieldContains(Query):
+    field: str
+    value: Any

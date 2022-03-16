@@ -75,6 +75,9 @@ class Deck(Entity[DeckId]):
         for reviewable in self._all_reviewables:
             reviewable.reset()
 
+    def remove_flashcard(self, flashcard_id: FlashcardId) -> None:
+        self.cards.pop(flashcard_id, None)
+
     @property
     def id(self) -> DeckId:
         return self._deck_id

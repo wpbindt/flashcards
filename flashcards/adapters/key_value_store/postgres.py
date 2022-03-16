@@ -3,7 +3,7 @@ from typing import Callable, Dict, Any, List
 
 from flashcards.adapters.key_value_store.key_value_store import KeyValueStore, \
     Key, Value
-from flashcards.adapters.key_value_store.query import Query, FieldEqual, AndQuery
+from flashcards.adapters.key_value_store.query import Query, FieldEqual, AndQuery, FieldContains
 from flashcards.adapters.transaction.pg_transaction import PGTransaction
 
 
@@ -67,5 +67,10 @@ class PGKeyValueStore(KeyValueStore[Key, Value]):
             return ' AND '.join(
                 PGKeyValueStore._interpret_query(clause)
                 for clause in query.queries
+            )
+        if isinstance(query, FieldContains):
+            raise NotImplementedError(
+                'because of pydantic this cannot yet be implemented '
+                '(pydantic whines about dicts being mutable and cannot deal with Mappings)'
             )
         raise TypeError

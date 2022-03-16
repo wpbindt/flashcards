@@ -1,4 +1,5 @@
 import os
+from functools import lru_cache
 
 from flashcards.adapters.repository.repositories import pg_repositories_factory, \
     fake_repositories_factory
@@ -14,6 +15,7 @@ def get_pg_uow() -> UnitOfWork:
     )
 
 
+@lru_cache
 def get_fake_uow() -> UnitOfWork:
     return UnitOfWork(
         repo_factory=fake_repositories_factory,

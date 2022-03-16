@@ -2,7 +2,7 @@ from typing import Dict, List, Any, Callable
 
 from flashcards.adapters.key_value_store.key_value_store import KeyValueStore, \
     Key, Value
-from flashcards.adapters.key_value_store.query import Query, AndQuery, FieldEqual
+from flashcards.adapters.key_value_store.query import Query, AndQuery, FieldEqual, FieldContains
 
 
 class FakeKeyValueStore(KeyValueStore[Key, Value]):
@@ -35,4 +35,6 @@ class FakeKeyValueStore(KeyValueStore[Key, Value]):
             )
         if isinstance(query, FieldEqual):
             return self._dump_value(value)[query.field] == query.value
+        if isinstance(query, FieldContains):
+            return query.value in self._dump_value(value)[query.field]
         raise TypeError

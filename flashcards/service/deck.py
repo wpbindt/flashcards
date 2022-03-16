@@ -66,3 +66,12 @@ def mark_correct(deck_name: str, reviewable_id: UUID, correct: bool, uow: UnitOf
             deck.mark_incorrect(reviewable_ids={ReviewableId(reviewable_id)})
         uow.repositories.deck.add(deck)
         uow.commit()
+
+
+def remove_flashcard_from_decks(flashcard_id: UUID, uow: UnitOfWork) -> None:
+    with uow:
+        decks = uow.repositories.deck.find_by_flashcard(FlashcardId(flashcard_id))
+        for deck in decks:
+            deck.remove_flashcard(flashcard_id)
+            uow.repositories.deck.add(deck)
+        uow.commit()
